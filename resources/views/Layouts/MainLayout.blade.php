@@ -56,6 +56,7 @@
             background-color: green;
             color: white;
         }
+
         .alert-danger {
             background-color: red;
             color: white;
@@ -196,25 +197,33 @@
                                                 <a href="{{ route('album.all') }}"
                                                     class="text-light-dark">Gallary</a>
                                             </li>
-                                            <li class="menu-item">
-                                                <a href="#blogs"
-                                                    class="text-light-dark">Blogs</a>
-                                            </li>
+                                         
+                                            @guest
                                             <li class="menu-item {{ Route::is('Aboutus') ? 'active' : '' }} ">
                                                 <a href="{{ route('Aboutus') }}" class="text-light-dark">About us</a>
                                             </li>
-                                            
+
                                             <li class="menu-item  {{ Route::is('Contactus') ? 'active' : '' }}">
                                                 <a href="{{ route('Contactus') }}" class="text-light-dark">Contact
-                                                    Us</a>
+                                                    </a>
                                             </li>
-                                    
+                                            @endguest
+
                                             @auth
                                                 <li class="menu-item  {{ Route::is('user.profile') ? 'active' : '' }}">
                                                     <a href="{{ route('user.profile') }}" class="text-light-dark">MY
                                                         Profile</a>
                                                 </li>
                                             @endauth
+
+                                            @auth
+                                            <li class="menu-item  {{ Route::is('user.messages') ? 'active' : '' }}">
+                                                <a href="{{ route('user.messages') }}" class="text-light-dark">Messages
+                                                    </a>
+                                            </li>
+                                        @endauth
+
+                                          
                                         </ul>
                                     </nav>
                                     <div class="cta-btn">
@@ -255,11 +264,10 @@
 
 
     @if ($blog)
-      
     @endif
 
     @if ($footer)
-      
+
 
         <footer class="section-padding footer" id="footer">
             <div class="container">
@@ -297,6 +305,14 @@
                                 <li>
                                     <a href="{{ route('album.all') }}" class="text-custom-white">Gallary</a>
                                 </li>
+                                <li>
+                                    <a href="{{ route('Aboutus') }}" class="text-custom-white">About us</a>
+                                </li>
+
+                                <li>
+                                    <a href="{{ route('Contactus') }}" class="text-custom-white">Contact us</a>
+                                </li>
+
 
 
 

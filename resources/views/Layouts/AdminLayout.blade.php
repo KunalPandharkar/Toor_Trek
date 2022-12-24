@@ -102,6 +102,15 @@
                     </li>
 
                     <li>
+                        <a href="{{ route('admin.liveupdate') }}" class="nav-link"
+                            style="{{ Route::is('admin.liveupdate') ? 'font-weight: 800;color:#00a3c8' : '' }}">
+                            Send Live Update
+                        </a>
+                    </li>
+
+
+
+                    <li>
                         <a href="{{ route('admin.gallary') }}" class="nav-link"
                             style="{{ Route::is('admin.gallary') ? 'font-weight: 800;color:#00a3c8' : '' }}">
                             Gallary
@@ -114,6 +123,14 @@
                             Blogs
                         </a>
                     </li>
+
+                    <li>
+                        <a href="{{ route('admin.getintouch') }}" class="nav-link"
+                            style="{{ Route::is('admin.getintouch') ? 'font-weight: 800;color:#00a3c8' : '' }}">
+                            Get - In - Touch
+                        </a>
+                    </li>
+
 
 
 

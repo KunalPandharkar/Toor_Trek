@@ -28,5 +28,8 @@ class EventInfo extends Model
         return $this->hasMany(Bookings::class);
     }
 
+    public function messages(){
+        return $this->hasMany(TourMessages::class);
+    }
 
 }

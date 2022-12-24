@@ -13,10 +13,14 @@ use App\Models\Enquiries;
 use App\Models\Gallary;
 use App\Models\GallaryImages;
 use App\Models\Bookings;
+use App\Models\GetinTouch;
+use App\Models\Payments;
 use App\Models\Blogs;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Razorpay\Api\Api;
+use Session;
 
 use Exception;
 
@@ -93,8 +97,8 @@ class HomeController extends Controller
     }
 
     public function StoreBooking(EventInfo $tour,Request $request){
-
-      
+     
+       
         try {
             $booking  = new Bookings;
             $booking->firstname = $request->firstname;
@@ -108,11 +112,34 @@ class HomeController extends Controller
             $booking->female = $request->female;
             $booking->kids = $request->kids;
             $booking->event_info_id = $tour->id;
+            $booking->price = $tour->price;
+            $booking->user_id = Auth::id();
+            $booking->isPaid = false;
             $booking->save();
 
+            $payment = new Payments;
+
+            $payment->amount = $tour->price;
+            $payment->booking_id = $booking->id;
+            $payment->user_id = Auth::id();
+            $payment->isPaid = FALSE;
+
+            $payment->save();
+
+            $api = new Api(env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));
+            $razorPayOrder = $api->order->create(array('receipt' => $payment->id, 'amount' => $tour->price * 100, 'currency' => 'INR')); // Creates order
+            $razorPayOrderId = $razorPayOrder['id'];
+
+            // Session::put('order_id',$razorPayOrderId);
+            // Session::put('amount',$tour->amount*100);
+
+            $payment->order_id = $razorPayOrderId;
+            $payment->save();
             
-            $request->session()->flash('success', 'Booking Sent Successfully !');
-            return back();
+
+            
+            $request->session()->flash('success', 'Please Checkout !');
+            return redirect(route('order.checkout',['tour'=>$tour,'payment'=>$payment,'booking'=>$booking]));
         } catch (Exception $e) {
             dd($e);
             Log::error($e->getMessage());
@@ -120,6 +147,14 @@ class HomeController extends Controller
             return back();
         }
 
+    }
+
+    public function loadcheckout(EventInfo $tour,Payments $payment,Bookings $booking,Request $request){
+        // dd($payment);
+        $data['tour'] = $tour;
+        $data['payment'] = $payment;
+        $data['booking'] = $booking;
+        return view('checkout',$data);
     }
     
     public function loadAllGallary(Request $request){
@@ -136,5 +171,38 @@ class HomeController extends Controller
 
         return view('blogInfo',$data);
 
+    }
+
+    public function PaySuccess(Payments $payment,Request $request){
+         
+    
+        $payment->razorpay_id = $request->razorpay_payment_id;
+        $payment->isPaid = TRUE;
+        $payment->save();
+        $booking = Bookings::find($payment->booking_id);
+        $booking->isPaid = true;
+        $booking->save();
+        $request->session()->flash('success', 'Booking Sent Successfully !');
+
+        return redirect()->route('user.profile');
+    }
+
+    public function storeGetinTouch(Request $request){
+       
+        try {
+            $getintouch = new GetinTouch;
+            $getintouch->email = $request->email;
+            $getintouch->contact = $request->contact;
+            $getintouch->name = $request->name;
+            $getintouch->subject = $request->subject;
+            $getintouch->message = $request->message;
+            $getintouch->save();
+            $request->session()->flash('success', 'Enquiry Sent Successfully !');
+            return back();
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            $request->session()->flash('error', 'Failed to send Enquiry !');
+            return back();
+        }
     }
 }

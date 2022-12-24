@@ -11,6 +11,7 @@ use App\Models\EventCategory;
 use App\Models\EventDatesRate;
 use App\Models\Tourimages;
 use App\Models\Bookings;
+use App\Models\GetinTouch;
 use App\Models\Blogs;
 use App\Models\Gallary;
 use App\Models\GallaryImages;
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Enquiries;
+use App\Models\TourMessages;
 use Exception;
 
 class AdminController extends Controller
@@ -325,7 +327,7 @@ class AdminController extends Controller
 
     // } 
     public function LoadBookings(Request $request){
-        $data['bookings'] = Bookings::all();
+        $data['bookings'] = Bookings::where('isPAid',true)->get();
         return view('admin.bookings',$data);
     }
 
@@ -516,6 +518,32 @@ class AdminController extends Controller
             Log::error($e->getMessage());
             $request->session()->flash('error', 'Failed to Delete, Blog');
             return back();
+        }
+    }
+
+    public function loadGetinTouch(Request $request){
+          $data['getintouch'] = GetinTouch::all();
+
+          return view('admin.getintouch',$data);
+    }
+
+    public function loadLiveupdate(Request $request){
+        $data['tours'] = EventInfo::all();
+        return view('admin.liveupdate',$data);
+    }
+
+    public function storeMessage(EventInfo $tour,Request $request){
+        try {
+              $message = new  TourMessages;
+              $message->message = $request->message;
+              $message->event_info_id = $tour->id;
+              $message->save();
+              $request->session()->flash('success','Message Sent Successfully !');
+            return back();
+            } catch (Exception $e) {
+                Log::error($e->getMessage());
+                $request->session()->flash('error', 'Failed to Send, Message');
+                return back();
         }
     }
 }

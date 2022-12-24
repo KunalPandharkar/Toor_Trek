@@ -44,7 +44,7 @@
                                     <div class="row">
                                         <div class="col-lg-8">
                                             <h5 class="text-custom-black">Your Personal Information</h5>
-                                            <form action="{{route('booking.store',$tour)}}" method="POST">
+                                            <form action="{{ route('booking.store', $tour) }}" method="POST">
                                                 @csrf
 
                                                 <div class="row mb-md-80">
@@ -254,7 +254,6 @@
 
 
 
-
-
+ 
 
 @endsection

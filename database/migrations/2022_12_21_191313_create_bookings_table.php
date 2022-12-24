@@ -25,9 +25,15 @@ class CreateBookingsTable extends Migration
             $table->string('male')->nullable();
             $table->string('female')->nullable();
             $table->string('kids')->nullable();
+            $table->integer('price')->nullable();
+            $table->boolean('isPaid')->nullable()->default(false);
 
             $table->foreignId('event_info_id')
             ->constrained('event_infos')
+            ->onDelete('cascade');
+
+            $table->foreignId('user_id')
+            ->constrained('users')
             ->onDelete('cascade');
 
 

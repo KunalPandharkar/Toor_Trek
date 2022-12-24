@@ -63,28 +63,29 @@
               </div>
             </div>
           </div>
-          <form class="mb-md-80">
+          <form class="mb-md-80" method="POST" action="{{route('store.getintouch')}}">
+            @csrf
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" name="#" class="form-control form-control-custom" placeholder="Name" required="">
+                  <input type="text" name="name" class="form-control form-control-custom" placeholder="Name" required="">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="email" name="#" class="form-control form-control-custom" placeholder="Email I'd"
+                  <input type="email" name="email" class="form-control form-control-custom" placeholder="Email I'd"
                     required="">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" name="#" class="form-control form-control-custom" placeholder="Subject"
+                  <input type="text" name="subject" class="form-control form-control-custom" placeholder="Subject"
                     required="">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" name="#" class="form-control form-control-custom" placeholder="Phone No."
+                  <input type="text" name="contact" class="form-control form-control-custom" placeholder="Phone No."
                     required="">
                 </div>
               </div>

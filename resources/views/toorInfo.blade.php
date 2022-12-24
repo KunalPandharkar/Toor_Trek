@@ -590,7 +590,7 @@
                                                 </div>
                                                 <div class="hotel-grid-caption padding-20 bg-custom-white p-relative">
                                                     <h4 class="title fs-14"><a href="#"
-                                                            class="text-custom-black">{{ $tour->title }}<small
+                                                            class="text-custom-black">{{ Str::limit($tour->title,20) }}<small
                                                                 class="text-light-dark">{{ $tour->destination }}</small></a>
                                                     </h4>
                                                     <span

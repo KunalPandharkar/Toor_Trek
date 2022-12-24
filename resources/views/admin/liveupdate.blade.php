@@ -12,7 +12,7 @@
                     <li class="breadcrumb-item"><a href="{{ route('user.admin') }}">Admin</a></li>
                     <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('admin.events') }}">Events</a></li>
                
-                    <li class="breadcrumb-item active" aria-current="page">{{ $main_event->title }}</li>
+                    <li class="breadcrumb-item active" aria-current="page">Tours</li>
                 </ol>
             </nav>
             <!-- <div class="panelheading">
@@ -23,8 +23,7 @@
             <div class="dataaddactions">
                 <div class="addcategorybtns btn-group">
                     {{-- <button class="btn btn-secondary btn-sm" onclick="location.href=''">Print</button> --}}
-                    <button class="btn bluebg btn-sm" onclick="location.href='{{ route('admin.tour.add', $main_event) }}'">
-                        + Add New Tour</button>
+                  
                 </div>
                 <!-- searchbar -->
                 <div id="datasearchbar" class="input-group mt-3 mb-3">
@@ -50,7 +49,7 @@
                             <th>Price</th>
                             <th>Duration</th>
                             <th>Departure</th>
-                            <th>Others</th>
+                            <th>Total Bookings</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -97,40 +96,19 @@
 
 
                                 <td>
-                                    <div class=" d-flex">
-                                        <button class="btn btn-success btn-sm" style="font-size: 12px"
-                                        data-bs-toggle="modal" data-bs-target="#addDetail{{ $tour->id }}">
-                                        details
-                                    </button>
-                                        <button class="btn btn-success btn-sm" style="font-size: 12px"
-                                            data-bs-toggle="modal" data-bs-target="#addOffer{{ $tour->id }}">
-                                            offers
-                                        </button>
-
-                                    
-                                       
-                                    </div>
+                                    @php
+                                        $count = \App\Models\Bookings::where('event_info_id', $tour->id)->count();
+                                    @endphp
+                                    {{$count}}
                                 </td>
 
                                 <td>
                                     <div class="d-flex">
 
-                                        <button class="btn bluebg btn-sm"
-                                            onclick="location.href='{{ route('admin.tour.edit', $tour) }}'">
-                                            <span class="material-icons">
-                                                edit
-                                            </span>
+                                        <button class="btn bluebg btn-sm" data-bs-toggle="modal" data-bs-target="#addDetail{{ $tour->id }}"
+                                           >
+                                           Send Live Update
                                         </button>
-
-                                        <button class="btn btn-danger btn-sm"
-                                            onclick="location.href='{{ route('delete.tour', $tour) }}'">
-                                            <span class="material-icons">
-                                                delete
-                                            </span>
-
-                                        </button>
-
-
 
                                     </div>
 
@@ -138,37 +116,6 @@
 
 
 
-
-                                <!--modal for adding Details -->
-                                <div class="modal fade" id="addOffer{{ $tour->id }}" tabindex="-1"
-                                    aria-labelledby="addDetailLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content" style="width:600px;word-wrap:break-word;overflow-x: scroll;
-                                        white-space: nowrap;">
-                                        
-
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Offers of
-                                                        {{ $tour->title }}
-                                                    </h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-
-                                                   
-                                                        {!! $tour->offers !!}
-                                                    
-
-                                                  
-
-                                                </div>
-                                              
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--modal for add new offers-->
 
                                 <!--modal for adding Details -->
                                 <div class="modal fade" id="addDetail{{ $tour->id }}" tabindex="-1"
@@ -180,15 +127,27 @@
 
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLabel">Details of
-                                                        {{ $tour->title }}
+                                                        {{ Str::limit($tour->title,25) }}
                                                     </h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body container">
 
-                                                 
-                                                    {!! $tour->details !!}
+                                                    <form action="{{ route('store.message',$tour) }}" method="POST" enctype="multipart/form-data">
+                                                        @csrf
+                                                        <div class="mb-3">
+                                                            <div class="mb-3">
+                                                                <label for="exampleFormControlTextarea1" class="form-label">Type Message: </label>
+                                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="message" ></textarea>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn bluebg btn-sm">Send Message</button>
+                                                        </div>
+                                                    </form>
+                                              
 
 
 
@@ -215,26 +174,7 @@
 
             </div>
 
-            <!-- pagination -->
-            <nav aria-label="Page navigation example">
-                <ul class="pagination pagination-sm justify-content-end">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item active" aria-current="page">
-                        <span class="page-link">1</span>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+         
         </div>
 
     </div>
@@ -242,16 +182,4 @@
 
 
     
-    <!-- texteditor js cdn -->
-    <script src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
-    <script>
-        ClassicEditor
-            .create(document.querySelector('#editor2'))
-            .then(editor => {
-
-            })
-            .catch(error => {
-
-            });
-    </script>
 @endsection

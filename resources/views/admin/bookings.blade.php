@@ -43,15 +43,15 @@
                 <table class="table table-bordered table-hover">
                     <thead class="bluebg">
                         <tr>
-                            <th>Sr.No</th>
+                            
                             <th>User</th>
                             <th>Contact</th>
                             <th>Email</th>
                             <th>City</th>
-                            <th>Postal</th>
                             <th>People</th>
                             <th>Date</th>
-                            <th>Tour (Reference)</th>
+                            <th>Price</th>
+                            <th>Tour</th>
                             {{-- <th>Action</th> --}}
                         </tr>
                     </thead>
@@ -62,57 +62,56 @@
 
 
 
+                
                                 <td class="">
-                                    <div class="tablecellwidthbq">
-                                        <p class="mb-0">{{ $loop->iteration }}</p>
-                                    </div>
-                                </td>
-
-                                <td class="">
-                                    <div class="tablecellwidthbq">
+                    
                                         <p class="mb-0">{{ $booking->firstname }} {{$booking->lastname}}</p>
-                                    </div>
+                       
                                 </td>
 
                                 <td class="">
-                                    <div class="tablecellwidthbq">
+                              
                                         <p class="mb-0">{{ $booking->contact }}</p>
-                                    </div>
+                           
                                 </td>
 
                                 <td class="">
-                                    <div class="tablecellwidthbq">
+                    
                                         <p class="mb-0">{{$booking->email}}</p>
-                                    </div>
+                                  
                                 </td>
 
                                 <td class="">
-                                    <div class="tablecellwidthbq">
-                                        <p class="mb-0">{{$booking->city}}</p>
-                                    </div>
+                        
+                                        <p class="mb-0">{{$booking->city}}, {{$booking->postal}}</p>
+                                 
                                 </td>
 
-                                <td class="">
-                                    <div class="tablecellwidthbq">
-                                        <p class="mb-0">{{$booking->postal}}</p>
-                                    </div>
-                                </td>
+                           
+                               
 
                                 <td class="">
-                                    <div class="tablecellwidthbq">
+                                 
                                         <p class="mb-0">Total : {{$booking->people}}</p>
                                         <p class="mb-0">Male : {{$booking->male}}</p>
                                         <p class="mb-0">Female : {{$booking->female}}</p>
-                                        <p class="mb-0">Kids : {{$booking->kids}}</p>
-                                    </div>
+                                 
+                                </td>
+
+                                <td class="">
+                                    
+                                        <p class="mb-0">{{ date('h:i A, d/M/y', strtotime($booking->created_at)) }}</p>
+                            
+                                  
                                 </td>
 
                                 <td class="">
                                     <div class="tablecellwidthbq">
-                                        <p class="mb-0">{{ date('h:i A, d-m-y', strtotime($booking->created_at)) }}</p>
+                                        <p class="mb-0">₹{{ $booking->price }}</p>
                             
                                     </div>
                                 </td>
+
 
                                 <td class="">
 
@@ -153,7 +152,7 @@
             </div>
 
             <!-- pagination -->
-            <nav aria-label="Page navigation example">
+            {{-- <nav aria-label="Page navigation example">
                 <ul class="pagination pagination-sm justify-content-end">
                     <li class="page-item">
                         <a class="page-link" href="#" aria-label="Previous">
@@ -171,7 +170,7 @@
                         </a>
                     </li>
                 </ul>
-            </nav>
+            </nav> --}}
 
 
 

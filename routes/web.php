@@ -31,10 +31,14 @@ Route::post('/profile', [UserController::class, 'updateProfile'])->name('profile
 Route::get('/toor/{event}', [HomeController::class, 'loadToorInfo'])->name('toor.info');
 Route::post('/sendEnquiry', [HomeController::class, 'SaveEnquiry'])->name('save.enquiry');
 Route::get('/toorlist/{event}', [HomeController::class, 'loadToorList'])->name('toor.list');
-Route::get('/booking/{tour}', [HomeController::class, 'loadToorBooking'])->name('toor.booking');
-Route::post('/storeBooking/{tour}', [HomeController::class, 'StoreBooking'])->name('booking.store');
+Route::get('/booking/{tour}', [HomeController::class, 'loadToorBooking'])->name('toor.booking')->middleware(['auth']);
+Route::post('/storeBooking/{tour}', [HomeController::class, 'StoreBooking'])->name('booking.store')->middleware(['auth']);
 Route::get('/gallaries', [HomeController::class, 'loadAllGallary'])->name('album.all');
 Route::get('/bloginfo/{blog}', [HomeController::class, 'BlogInfo'])->name('blog.info');
+Route::get('/checkout/{tour}/{payment}/{booking}', [HomeController::class, 'loadcheckout'])->name('order.checkout');
+Route::get('/success/{payment}', [HomeController::class, 'PaySuccess'])->name('pay.success');
+Route::post('/getintouch', [HomeController::class, 'storeGetinTouch'])->name('store.getintouch');
+Route::get('/messages/{activeTour?}', [UserController::class, 'loadMessages'])->name('user.messages')->middleware(['auth']);
 
 
 // Admin Routes
@@ -65,6 +69,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/blogs/create', [AdminController::class, 'loadCreateBlog'])->name('admin.blogs.load');
     Route::post('/blogs/store', [AdminController::class, 'storeBlog'])->name('admin.blogs.store');
     Route::get('/blogs/delete/{blog}', [AdminController::class, 'deleteBlog'])->name('delete.blog');
+    Route::get('/getintouch', [AdminController::class, 'loadGetinTouch'])->name('admin.getintouch');
+    Route::get('/liveUpdate', [AdminController::class, 'loadLiveupdate'])->name('admin.liveupdate');
+    Route::post('/storemessage/{tour}', [AdminController::class, 'storeMessage'])->name('store.message');
 
 });
 
