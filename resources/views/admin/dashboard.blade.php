@@ -137,7 +137,7 @@
           <br>  
           <!-- table -->
           <div id="alldatatable" class="bg-white  table-responsive">
-              <table class="table table-bordered table-hover">
+              <table class="table table-bordered table-hover" id="userstable">
                   <thead class="bluebg">
                       <tr>
                           <th>Sr.No</th>
@@ -230,26 +230,7 @@
   
           </div>
   
-          <!-- pagination -->
-          <nav aria-label="Page navigation example">
-              <ul class="pagination pagination-sm justify-content-end">
-                  <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Previous">
-                          <span aria-hidden="true">&laquo;</span>
-                      </a>
-                  </li>
-                  <li class="page-item active" aria-current="page">
-                      <span class="page-link">1</span>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Next">
-                          <span aria-hidden="true">&raquo;</span>
-                      </a>
-                  </li>
-              </ul>
-          </nav>
+     
   
   
   

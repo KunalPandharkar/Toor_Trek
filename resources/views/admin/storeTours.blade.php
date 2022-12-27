@@ -142,8 +142,7 @@
                         <label class="form-label small">Add Dates & Rates :</label>
                         <div class="field_wrapperpn">
                             <div class="mb-3">
-                                <input type="date" class="form-control form-control-sm d-inline m-1"
-                                     name="dates[]">
+                                <input type="date" class="form-control form-control-sm d-inline m-1" name="dates[]">
 
                                 <input type="text" class="form-control form-control-sm d-inline m-1"
                                     placeholder="Enter Variant" name="variants[]">
@@ -186,6 +185,16 @@
             })
             .catch(error => {
 
+            });
+
+
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .then(editor => {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error);
             });
     </script>
 @endsection

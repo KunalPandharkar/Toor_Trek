@@ -119,7 +119,7 @@ class HomeController extends Controller
 
             $payment = new Payments;
 
-            $payment->amount = $tour->price;
+            $payment->amount = $tour->price * $booking->people;
             $payment->booking_id = $booking->id;
             $payment->user_id = Auth::id();
             $payment->isPaid = FALSE;
@@ -127,7 +127,7 @@ class HomeController extends Controller
             $payment->save();
 
             $api = new Api(env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));
-            $razorPayOrder = $api->order->create(array('receipt' => $payment->id, 'amount' => $tour->price * 100, 'currency' => 'INR')); // Creates order
+            $razorPayOrder = $api->order->create(array('receipt' => $payment->id, 'amount' => $payment->amount * 100, 'currency' => 'INR')); // Creates order
             $razorPayOrderId = $razorPayOrder['id'];
 
             // Session::put('order_id',$razorPayOrderId);

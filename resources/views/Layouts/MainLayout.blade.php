@@ -197,19 +197,24 @@
                                                 <a href="{{ route('album.all') }}"
                                                     class="text-light-dark">Gallary</a>
                                             </li>
-                                         
-                                            @guest
-                                            <li class="menu-item {{ Route::is('Aboutus') ? 'active' : '' }} ">
-                                                <a href="{{ route('Aboutus') }}" class="text-light-dark">About us</a>
+
+                                            <li class="menu-item {{ Route::is('user.blogs') ? 'active' : '' }} ">
+                                                <a href="{{ route('user.blogs') }}"
+                                                    class="text-light-dark">Blogs</a>
                                             </li>
 
-                                            <li class="menu-item  {{ Route::is('Contactus') ? 'active' : '' }}">
-                                                <a href="{{ route('Contactus') }}" class="text-light-dark">Contact
+                                            @guest
+                                                <li class="menu-item {{ Route::is('Aboutus') ? 'active' : '' }} ">
+                                                    <a href="{{ route('Aboutus') }}" class="text-light-dark">About us</a>
+                                                </li>
+
+                                                <li class="menu-item  {{ Route::is('Contactus') ? 'active' : '' }}">
+                                                    <a href="{{ route('Contactus') }}" class="text-light-dark">Contact us
                                                     </a>
-                                            </li>
+                                                </li>
                                             @endguest
 
-                                            @auth
+                                            {{-- @auth
                                                 <li class="menu-item  {{ Route::is('user.profile') ? 'active' : '' }}">
                                                     <a href="{{ route('user.profile') }}" class="text-light-dark">MY
                                                         Profile</a>
@@ -217,14 +222,67 @@
                                             @endauth
 
                                             @auth
-                                            <li class="menu-item  {{ Route::is('user.messages') ? 'active' : '' }}">
-                                                <a href="{{ route('user.messages') }}" class="text-light-dark">Messages
+                                                <li class="menu-item  {{ Route::is('user.messages') ? 'active' : '' }}">
+                                                    <a href="{{ route('user.messages') }}"
+                                                        class="text-light-dark">Messages
                                                     </a>
-                                            </li>
-                                        @endauth
+                                                </li>
+                                            @endauth --}}
 
-                                          
+                                            @auth
+
+                                            <li class="menu-item menu-item-has-children">
+                                                <a href="#" class="text-light-dark">Others</a>
+                                                <ul class="custom sub-menu">
+
+                                                    <li class="menu-item ">
+                                                        <a href="{{ route('Aboutus') }}" class="text-custom-white">
+                                                            About Us
+                                                            </a>
+                                                    </li>
+
+
+                                                    <li class="menu-item">
+                                                        <a href="{{ route('Contactus') }}"
+                                                            class="text-custom-white">Contact Us
+                                                        </a>
+                                                    </li>
+
+
+                                                </ul>
+                                            </li>
+                                            @endauth
+
+                                            @auth
+
+                                            <li class="menu-item menu-item-has-children">
+                                                <a href="#" class="text-light-dark">{{strtok(auth()->user()->name," ")}}</a>
+                                                <ul class="custom sub-menu">
+
+                                                    <li class="menu-item ">
+                                                        <a href="{{ route('user.profile') }}" class="text-custom-white">My
+                                                            Profile</a>
+                                                    </li>
+
+
+                                                    <li class="menu-item">
+                                                        <a href="{{ route('user.messages') }}"
+                                                            class="text-custom-white">Bookings 
+                                                            
+                                                        </a>
+                                                    </li>
+
+
+                                                </ul>
+                                            </li>
+                                            @endauth
+
+
+
+
                                         </ul>
+
+
                                     </nav>
                                     <div class="cta-btn">
                                         <a href="#footer" class="btn-first btn-submit">Enquiry Now</a>

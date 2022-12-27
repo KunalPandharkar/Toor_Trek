@@ -101,7 +101,7 @@
                                                         </label>
                                                         <input type="text" name="male"
                                                             class="form-control form-control-custom" placeholder="Males"
-                                                            readonly value="{{ $booking->males }}">
+                                                            readonly value="{{ $booking->male }}">
                                                     </div>
                                                 </div>
 
@@ -111,7 +111,7 @@
                                                         </label>
                                                         <input type="text" name="female"
                                                             class="form-control form-control-custom" placeholder="Females"
-                                                            readonly value="{{ $booking->females }}">
+                                                            readonly value="{{ $booking->female }}">
                                                     </div>
                                                 </div>
 
@@ -149,9 +149,9 @@
                                                     <form action="{{route('pay.success',$payment)}}" method="get">
                                             
                                                         <script src="https://checkout.razorpay.com/v1/checkout.js"     data-key="{{ env('RAZORPAY_KEY') }}" ,
-                                                            data-amount="{{ $tour->price * 100 }}" , data-currency="INR" , data-order_id="{{ $payment->order_id }}"
+                                                            data-amount="{{ $payment->amount * 100}}" , data-currency="INR" , data-order_id="{{ $payment->order_id }}"
                                                             data-buttontext="Pay with Razorpay" data-name="Happy Feets Venture" ,
-                                                            data-description="Transaction of Booking Happy Feets Venture" , data-theme.color="#00a3c8"></script>
+                                                            data-description="Transaction of Booking Happy Feets Venture" , data-theme.color="#018c21"></script>
                                             
                                                         <input type="hidden" custom="Hidden Element" name="hidden">
                                                     </form>
@@ -166,15 +166,16 @@
 
                                                     <h5 class="text-custom-black">Tour Details</h5>
 
+
                                                     <div class="hotel-type mb-xl-20 bg-light-white padding-10">
                                                         <ul class="custom">
                                                             <li class="text-custom-black fs-16 fw-500 no-margin pb-1">Name : <span style="color:#595e63"> {{ $tour->title }} </span></li>
                                                             <li class="text-custom-black fs-16 fw-500 no-margin pb-1">Type : <span style="color:#595e63" >{{ $tour->type }} </span> </li>
                                                             <li class="text-custom-black fs-16 fw-500 no-margin pb-1">Duration :<span style="color:#595e63" > {{ $tour->duration }} </span></li>
                                                             <li class="text-custom-black fs-16 fw-500 no-margin pb-1">Destination : <span style="color:#595e63" >{{ $tour->destination }}</span></li>
-                                                            <li class="text-custom-black fs-16 fw-500 no-margin pb-1">MRP : <span style="color:#595e63" >₹{{ $tour->mrp }} </span></li>
+                                                            <li class="text-custom-black fs-16 fw-500 no-margin pb-1">MRP : <span style="color:#595e63" >₹{{ $tour->mrp }}/person </span></li>
                                                             <li class="text-custom-black fs-16 fw-500 no-margin pb-1" style="border-bottom: 1px solid black">Discount : <span style="color:#595e63" >₹{{ $tour->discount }} </span></li>
-                                                            <li class="text-custom-black fs-20 fw-500 no-margin pb-1">Price : <span style="color:#595e63" >₹{{ $tour->price }} </span></li>
+                                                            <li class="text-custom-black fs-20 fw-500 no-margin pb-1">Price : <span style="color:#595e63" >₹{{ $tour->price * $booking->people }} </span></li>
                                                           
                                                         </ul>
                                                     </div>

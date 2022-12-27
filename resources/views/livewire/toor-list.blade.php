@@ -42,7 +42,8 @@
                                         </div>
                                     </div>
 
-                                    <button type="reset" wire:click="Resetdata" class="btn-first btn-submit full-width btn-height">Reset</button>
+                                    <button type="reset" wire:click="Resetdata"
+                                        class="btn-first btn-submit full-width btn-height">Reset</button>
                                 </form>
                             </div>
                             <div class="sidebar_widgets mb-xl-30">
@@ -57,10 +58,10 @@
                                             <input type="search" name="minPrice" wire:model="minPrice"
                                                 class="form-control form-control-custom" placeholder="Min :">
                                         </div>
-                                    
+
                                     </div>
 
-                                    
+
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
@@ -69,7 +70,7 @@
                                                 class="form-control form-control-custom" placeholder="Max :">
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             </div>
 
@@ -82,7 +83,7 @@
                             <div class="listing-top-heading mb-xl-20">
                                 <h6 class="no-margin text-custom-black">Showing {{ $tours->count() }}
                                     Results</h6>
-                                
+
                             </div>
                         </div>
 
@@ -99,7 +100,7 @@
                                         </div>
                                         <div class="hotel-grid-caption padding-20 bg-custom-white p-relative">
                                             <h4 class="title fs-16"><a href="{{ route('toor.info', $tour) }}"
-                                                    class="text-custom-black">{{ Str::limit($tour->title,20) }}
+                                                    class="text-custom-black">{{ Str::limit($tour->title, 20) }}
                                                     <small class="text-light-dark">{{ $tour->destination }} </small></a>
                                             </h4>
                                             <span
@@ -107,7 +108,8 @@
                                             <div class="action">
                                                 <a class="btn-first btn-submit"
                                                     href="{{ route('toor.info', $tour) }}">View</a>
-                                                <a class="btn-second btn-small" href="{{ route('toor.booking', $tour) }}">Book</a>
+                                                <a class="btn-second btn-small"
+                                                    href="{{ route('toor.booking', $tour) }}">Book</a>
                                             </div>
                                         </div>
                                     </div>
@@ -126,9 +128,9 @@
                         <div class="col-12">
                             <nav class="section-padding-top">
                                 <ul class="pagination justify-content-center">
-            {{ $tours->appends(request()->query())->links('pagination::bootstrap-4') }}
-                                
-                                   {{-- <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                    {{ $tours->appends(request()->query())->links('pagination::bootstrap-4') }}
+
+                                    {{-- <li class="page-item"><a class="page-link" href="#">Previous</a></li>
                                     <li class="page-item"><a class="page-link" href="#">1</a></li>
                                     <li class="page-item active"><a class="page-link" href="#">2</a></li>
                                     <li class="page-item"><a class="page-link" href="#">3</a></li>

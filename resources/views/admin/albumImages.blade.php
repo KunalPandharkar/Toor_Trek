@@ -26,16 +26,7 @@
                         + Add New Image</button>
                 </div>
 
-                <!-- searchbar -->
-                <div id="datasearchbar" class="input-group mt-3 mb-3">
-                    <input type="text" class="form-control" placeholder="Search Requests"
-                        aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <button class="btn orangebg" type="button" id="button-addon2">
-                        <span class="material-icons">
-                            search
-                        </span>
-                    </button>
-                </div>
+                
             </div>
 
             <!-- table -->

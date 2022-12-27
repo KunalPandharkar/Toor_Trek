@@ -19,14 +19,16 @@
                                         </div> -->
 
 
-            <div class="dataaddactions">
+            <div class="dataaddactions mb-4">
                
               
             </div>
 
+            <br>
+
             <!-- table -->
             <div id="alldatatable" class="bg-white mt-2 table-responsive">
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered table-hover" id="userstable">
                     <thead class="bluebg">
                         <tr>
                             <th>Sr.No</th>
@@ -38,10 +40,10 @@
                         </tr>
                     </thead>
                     <tbody>
-
+                        @forelse ($getintouch as $msg)
                         <tr>
 
-                            @forelse ($getintouch as $msg)
+                           
 
                             <td>{{$loop->iteration}}</td>
                             <td>{{$msg->name}}</td>
@@ -49,11 +51,11 @@
                             <td>{{$msg->email}}</td>
                             <td>{{$msg->contact}}</td>
                             <td>{{$msg->message}}</td>
-                            @empty
-                                
-                            @endforelse
+                           
                         </tr>
-               
+                        @empty
+                                
+                        @endforelse
 
 
 

@@ -19,28 +19,15 @@
 
 
 
-            <div class="dataaddactions">
-                <div class="addcategorybtns btn-group">
-                    {{-- <button class="btn btn-secondary btn-sm" onclick="location.href=''">Print</button> --}}
-                    <button class="btn bluebg btn-sm">
-                        Export Users</button>
-                </div>
-
-                <!-- searchbar -->
-                <div id="datasearchbar" class="input-group mt-3 mb-3">
-                    <input type="text" class="form-control" placeholder="Search Requests"
-                        aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <button class="btn orangebg" type="button" id="button-addon2">
-                        <span class="material-icons">
-                            search
-                        </span>
-                    </button>
-                </div>
+            <div class="dataaddactions mb-4">
+                
             </div>
 
+            <br>
+
             <!-- table -->
-            <div id="alldatatable" class="bg-white mt-2 table-responsive">
-                <table class="table table-bordered table-hover">
+            <div id="alldatatable" class="bg-white mt-4 table-responsive">
+                <table class="table table-bordered table-hover" id="userstable">
                     <thead class="bluebg">
                         <tr>
                             
@@ -95,6 +82,7 @@
                                         <p class="mb-0">Total : {{$booking->people}}</p>
                                         <p class="mb-0">Male : {{$booking->male}}</p>
                                         <p class="mb-0">Female : {{$booking->female}}</p>
+                                        <p class="mb-0">Kids : {{$booking->kids}}</p>
                                  
                                 </td>
 

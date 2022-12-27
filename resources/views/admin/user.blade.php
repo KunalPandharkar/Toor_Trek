@@ -1,6 +1,9 @@
 @extends('Layouts.AdminLayout')
 
 @section('content')
+    <style>
+       
+    </style>
     <!-- Page content-->
     <div class="container-fluid">
 
@@ -15,18 +18,14 @@
                 </ol>
             </nav>
             <!-- <div class="panelheading">
-                                            <p>Users</p>
-                                        </div> -->
+                                                    <p>Users</p>
+                                                </div> -->
 
 
-            <div class="dataaddactions">
-                <div class="addcategorybtns btn-group">
-                    {{-- <button class="btn btn-secondary btn-sm" onclick="location.href=''">Print</button> --}}
-                    <button class="btn bluebg btn-sm">
-                        Export Users</button>
-                </div>
+            <div class="dataaddactions mb-4">
+                
 
-                <!-- searchbar -->
+                {{-- <!-- searchbar -->
                 <div id="datasearchbar" class="input-group mt-3 mb-3">
                     <input type="text" class="form-control" placeholder="Search Requests"
                         aria-label="Recipient's username" aria-describedby="button-addon2">
@@ -35,12 +34,13 @@
                             search
                         </span>
                     </button>
-                </div>
+                </div> --}}
             </div>
+            <br>
 
             <!-- table -->
             <div id="alldatatable" class="bg-white mt-2 table-responsive">
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered table-hover display" id="userstable">
                     <thead class="bluebg">
                         <tr>
                             <th>User ID</th>
@@ -57,15 +57,14 @@
                     </thead>
                     <tbody>
                         @forelse ($users as $user)
+                            <tr>
 
-                        <tr>
 
 
-                           
-                            
+
                                 <td class="">
                                     <div class="tablecellwidthbq">
-                                        <p class="mb-0">{{$user->id}}</p>
+                                        <p class="mb-0">{{ $user->id }}</p>
                                     </div>
                                 </td>
                                 <td>
@@ -75,29 +74,29 @@
                                 </td>
                                 <td class="">
                                     <div class="tablecellwidthbq">
-                                        <p class="mb-0">{{$user->name}} </p>
+                                        <p class="mb-0">{{ $user->name }} </p>
                                     </div>
                                 </td>
                                 <td class="">
                                     <div class="tablecellwidthbq">
-                                        <p class="mb-0">{{$user->age}} </p>
+                                        <p class="mb-0">{{ $user->age }} </p>
                                     </div>
                                 </td>
                                 <td class="">
                                     <div class="tablecellwidthbq">
-                                        <p class="mb-0">{{$user->gender}} </p>
-                                    </div>
-                                </td>
-
-                                <td class="">
-                                    <div class="tablecellwidthbq">
-                                        <p class="mb-0">{{$user->contact}} </p>
+                                        <p class="mb-0">{{ $user->gender }} </p>
                                     </div>
                                 </td>
 
                                 <td class="">
                                     <div class="tablecellwidthbq">
-                                        <p class="mb-0">{{$user->email}} </p>
+                                        <p class="mb-0">{{ $user->contact }} </p>
+                                    </div>
+                                </td>
+
+                                <td class="">
+                                    <div class="tablecellwidthbq">
+                                        <p class="mb-0">{{ $user->email }} </p>
                                     </div>
                                 </td>
 
@@ -109,7 +108,7 @@
 
                                 <td class="">
                                     <div class="tablecellwidthbq">
-                                        <p class="mb-0">{{$user->address}} </p>
+                                        <p class="mb-0">{{ $user->address }} </p>
                                     </div>
                                 </td>
                                 <td>
@@ -121,7 +120,8 @@
                                             </span>
                                         </button> --}}
 
-                                        <button class="btn btn-danger btn-sm" onclick="location.href='{{ route('admin.users.delete', $user) }}'">
+                                        <button class="btn btn-danger btn-sm"
+                                            onclick="location.href='{{ route('admin.users.delete', $user) }}'">
                                             <span class="material-icons">
                                                 delete
                                             </span>
@@ -137,8 +137,8 @@
 
                             @empty
 
-                        </tr>
-                            @endforelse
+                            </tr>
+                        @endforelse
 
 
 
@@ -150,25 +150,7 @@
             </div>
 
             <!-- pagination -->
-            <nav aria-label="Page navigation example">
-                <ul class="pagination pagination-sm justify-content-end">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item active" aria-current="page">
-                        <span class="page-link">1</span>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+            
         </div>
 
     </div>

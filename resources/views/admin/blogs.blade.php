@@ -23,20 +23,12 @@
                         + Add New Blog</button>
                 </div>
                 <!-- searchbar -->
-                <div id="datasearchbar" class="input-group mt-3 mb-3">
-                    <input type="text" class="form-control" placeholder="Search Requests"
-                        aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <button class="btn orangebg" type="button" id="button-addon2">
-                        <span class="material-icons">
-                            search
-                        </span>
-                    </button>
-                </div>
+
             </div>
 
             <!-- table -->
             <div id="alldatatable" class="bg-white mt-2 table-responsive">
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered table-hover display" id="userstable">
                     <thead class="bluebg">
                         <tr>
 
@@ -50,10 +42,10 @@
                     </thead>
                     <tbody>
 
+                        @forelse ($blogs as $blog)
+                            <tr>
 
-                        <tr>
 
-                            @forelse ($blogs as $blog)
                                 <td>
                                     <div class="brandlogoimg">
                                         <img src="{{ asset('storage' . $blog->image) }}" alt="">
@@ -127,10 +119,10 @@
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                
+
                                                 <h3>Special Text</h3>
                                                 {!! $blog->specialtext !!}
-                                                    <hr>
+                                                <hr>
                                                 <h3>Tags</h3>
                                                 {!! $blog->tags !!}
                                                 <hr>
@@ -182,10 +174,11 @@
                                     </div>
                                 </div>
                                 <!--modal for add new offers-->  --}}
-                        </tr>
-                    @empty
+                            @empty
+                            </tr>
 
-                        <h1>No data Available !</h1>
+
+                            {{-- <h1>No data Available !</h1> --}}
                         @endforelse
 
 
@@ -197,43 +190,9 @@
 
             </div>
 
-            <!-- pagination -->
-            <nav aria-label="Page navigation example">
-                <ul class="pagination pagination-sm justify-content-end">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item active" aria-current="page">
-                        <span class="page-link">1</span>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+
         </div>
 
     </div>
     <!-- Page content ends-->
-
-
-
-    <!-- texteditor js cdn -->
-    <script src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
-    <script>
-        ClassicEditor
-            .create(document.querySelector('#editor2'))
-            .then(editor => {
-
-            })
-            .catch(error => {
-
-            });
-    </script>
 @endsection

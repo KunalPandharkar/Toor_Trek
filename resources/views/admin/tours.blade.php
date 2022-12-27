@@ -10,14 +10,15 @@
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumblinks">
                     <li class="breadcrumb-item"><a href="{{ route('user.admin') }}">Admin</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('admin.events') }}">Events</a></li>
-               
+                    <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('admin.events') }}">Events</a>
+                    </li>
+
                     <li class="breadcrumb-item active" aria-current="page">{{ $main_event->title }}</li>
                 </ol>
             </nav>
             <!-- <div class="panelheading">
-                                                                        <p>Users</p>
-                                                                    </div> -->
+                                                                            <p>Users</p>
+                                                                        </div> -->
 
 
             <div class="dataaddactions">
@@ -27,7 +28,7 @@
                         + Add New Tour</button>
                 </div>
                 <!-- searchbar -->
-                <div id="datasearchbar" class="input-group mt-3 mb-3">
+                {{-- <div id="datasearchbar" class="input-group mt-3 mb-3">
                     <input type="text" class="form-control" placeholder="Search Requests"
                         aria-label="Recipient's username" aria-describedby="button-addon2">
                     <button class="btn orangebg" type="button" id="button-addon2">
@@ -35,12 +36,12 @@
                             search
                         </span>
                     </button>
-                </div>
+                </div> --}}
             </div>
 
             <!-- table -->
             <div id="alldatatable" class="bg-white mt-2 table-responsive">
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered table-hover" id="userstable">
                     <thead class="bluebg">
                         <tr>
 
@@ -67,7 +68,7 @@
                                 </td>
                                 <td>
                                     <div class="">
-                                        <p class="mb-0">{{ Str::limit($tour->title,20) }}</p>
+                                        <p class="mb-0">{{ Str::limit($tour->title, 20) }}</p>
                                     </div>
                                 </td>
 
@@ -99,16 +100,16 @@
                                 <td>
                                     <div class=" d-flex">
                                         <button class="btn btn-success btn-sm" style="font-size: 12px"
-                                        data-bs-toggle="modal" data-bs-target="#addDetail{{ $tour->id }}">
-                                        details
-                                    </button>
+                                            data-bs-toggle="modal" data-bs-target="#addDetail{{ $tour->id }}">
+                                            details
+                                        </button>
                                         <button class="btn btn-success btn-sm" style="font-size: 12px"
                                             data-bs-toggle="modal" data-bs-target="#addOffer{{ $tour->id }}">
                                             offers
                                         </button>
 
-                                    
-                                       
+
+
                                     </div>
                                 </td>
 
@@ -143,27 +144,28 @@
                                 <div class="modal fade" id="addOffer{{ $tour->id }}" tabindex="-1"
                                     aria-labelledby="addDetailLabel" aria-hidden="true">
                                     <div class="modal-dialog">
-                                        <div class="modal-content" style="width:600px;word-wrap:break-word;overflow-x: scroll;
+                                        <div class="modal-content"
+                                            style="width:600px;word-wrap:break-word;overflow-x: scroll;
                                         white-space: nowrap;">
-                                        
 
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Offers of
-                                                        {{ $tour->title }}
-                                                    </h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
 
-                                                   
-                                                        {!! $tour->offers !!}
-                                                    
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Offers of
+                                                    {{ $tour->title }}
+                                                </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
 
-                                                  
 
-                                                </div>
-                                              
+                                                {!! $tour->offers !!}
+
+
+
+
+                                            </div>
+
 
                                         </div>
                                     </div>
@@ -174,27 +176,28 @@
                                 <div class="modal fade" id="addDetail{{ $tour->id }}" tabindex="-1"
                                     aria-labelledby="addDetailLabel" aria-hidden="true">
                                     <div class="modal-dialog">
-                                        <div class="modal-content" style="width:600px;word-wrap:break-word;overflow-x: scroll;
+                                        <div class="modal-content"
+                                            style="width:600px;word-wrap:break-word;overflow-x: scroll;
                                         white-space: nowrap;">
-                                           
-
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Details of
-                                                        {{ $tour->title }}
-                                                    </h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body container">
-
-                                                 
-                                                    {!! $tour->details !!}
 
 
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Details of
+                                                    {{ $tour->title }}
+                                                </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body container">
 
-                                                </div>
-                                               
-                                           
+
+                                                {!! $tour->details !!}
+
+
+
+                                            </div>
+
+
 
                                         </div>
                                     </div>
@@ -241,7 +244,7 @@
     <!-- Page content ends-->
 
 
-    
+
     <!-- texteditor js cdn -->
     <script src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
     <script>

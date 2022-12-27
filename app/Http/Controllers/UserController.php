@@ -11,6 +11,7 @@ use App\Models\Payments;
 use App\Models\TourMessages;
 use Illuminate\Support\Facades\Log;
 use App\Models\EventInfo;
+use App\Models\Blogs;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Exception;
@@ -20,13 +21,27 @@ class UserController extends Controller
     public function loadUserProfile(){
         $data['user'] = Auth::user();
 
-        $data['AllBookings'] = Bookings::where('user_id',Auth::id())->get();
+        $data['AllBookings'] = Bookings::where(
+            [
+                [ 'user_id',Auth::id()],
+                ['isPaid',1]
+            ]
+           
+            )->get();
         $data['PaidBookings'] = Bookings::where(
             [
                 ['user_id',Auth::id()],
                 ['isPaid',true]
             ]
             )->get();
+
+        $data['messagecount'] = DB::table('event_infos')
+            ->select('event_infos.*','bookings.*')
+            ->join('bookings','bookings.event_info_id','=','event_infos.id')
+            ->where(['bookings.user_id' => Auth::id(),'bookings.isPaid' => true])
+            ->get();
+        
+        
         
 
         return view('User.profile',$data);
@@ -105,6 +120,12 @@ class UserController extends Controller
 
         // dd($data['messages']);
         return view('User.mesaages',$data);
+    }
+
+    public function loadBlogs(Request $request){
+        $data['blogs'] = Blogs::paginate(9);
+
+        return view('allBlogs',$data);
     }
  
 }

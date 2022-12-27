@@ -198,10 +198,27 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
   font-size: 14px;
 }
 #alldatatable button {
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   align-items: center;
   margin-right: 0.5rem;
+  color:#ffffff;
+}
+.dataTables_wrapper .dataTables_filter input {
+  width: 400px;
+  padding: 6px;
+  border: 1px solid #181c2a;
+  border-radius: 3px;
+  margin-bottom: 12px
+}
+
+#alldatatable .dt-button{
+  padding: .25rem .5rem;
+  font-size: .875rem;
+  border-radius: .2rem;
+  background-color: #181c2a;
+  margin-bottom: 15px;
+
 }
 #alldatatable button span {
   font-size: 17px;
@@ -343,6 +360,10 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
 .addcategorybtns {
   margin: 1.5rem;
   margin-left: 0rem;
+}
+.addcategorybtns  button{
+  background-color: #151515;
+  margin-bottom: 15px;
 }
 
 /* category vise products and subcategories */
@@ -912,7 +933,7 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
 
   /* all categories */
   .addcategorybtns {
-    margin-bottom: -3.3rem;
+    margin-bottom: -0.3rem;
   }
 
   /* add product */

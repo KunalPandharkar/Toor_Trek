@@ -27,20 +27,12 @@
                 </div>
 
                 <!-- searchbar -->
-                <div id="datasearchbar" class="input-group mt-3 mb-3">
-                    <input type="text" class="form-control" placeholder="Search Requests"
-                        aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <button class="btn orangebg" type="button" id="button-addon2">
-                        <span class="material-icons">
-                            search
-                        </span>
-                    </button>
-                </div>
+                
             </div>
 
             <!-- table -->
             <div id="alldatatable" class="bg-white mt-2 table-responsive">
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered table-hover" id="userstable">
                     <thead class="bluebg">
                         <tr>
                             <th>ID</th>
@@ -171,7 +163,7 @@
 
                         @empty
 
-                            <h1>No data Available !</h1>
+                            {{-- <h1>No data Available !</h1> --}}
                         @endforelse
 
 
@@ -182,25 +174,7 @@
             </div>
 
             <!-- pagination -->
-            <nav aria-label="Page navigation example">
-                <ul class="pagination pagination-sm justify-content-end">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item active" aria-current="page">
-                        <span class="page-link">1</span>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+         
         </div>
 
     </div>

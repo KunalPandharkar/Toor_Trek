@@ -324,7 +324,7 @@
         <div class="container">
             <div class="section-header">
                 <div class="section-heading">
-                    <h3 class="text-custom-black">Our Work</h3>
+                    <h3 class="text-custom-black">Photo Gallary</h3>
                     <div class="section-description">
                         <p class="text-light-dark">Starting off with one tour in Delhi, we have now grown to
                             10 tours covering two.</p>

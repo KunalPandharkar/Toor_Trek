@@ -39,6 +39,7 @@ Route::get('/checkout/{tour}/{payment}/{booking}', [HomeController::class, 'load
 Route::get('/success/{payment}', [HomeController::class, 'PaySuccess'])->name('pay.success');
 Route::post('/getintouch', [HomeController::class, 'storeGetinTouch'])->name('store.getintouch');
 Route::get('/messages/{activeTour?}', [UserController::class, 'loadMessages'])->name('user.messages')->middleware(['auth']);
+Route::get('/allblogs', [UserController::class, 'loadBlogs'])->name('user.blogs');
 
 
 // Admin Routes
