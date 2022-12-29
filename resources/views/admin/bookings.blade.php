@@ -95,7 +95,7 @@
 
                                 <td class="">
                                     <div class="tablecellwidthbq">
-                                        <p class="mb-0">₹{{ $booking->price }}</p>
+                                        <p class="mb-0">₹{{ $booking->price * $booking->people }}</p>
                             
                                     </div>
                                 </td>
